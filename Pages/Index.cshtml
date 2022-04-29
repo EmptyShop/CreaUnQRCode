@@ -1,0 +1,37 @@
+﻿@page
+@model IndexModel
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers;
+@{
+    ViewData["Title"] = "Generador de Códigos QR";
+}
+
+<div class="text-center">
+    <h1 class="display-4">¡Hola!</h1>
+    <p>Hoy es @ViewData["TimeStamp"]</p>
+ </div>
+    
+<div class="container">
+        
+    <form method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-8">
+                    <label for="Mensaje">Escribe un mensaje</label>
+                    <input asp-for="Mensaje" type="text" class="form-control"/>
+                    <button type="submit" class="btn btn-primary">Generar</button>
+                </div>
+            </div>
+            @{
+                if (!String.IsNullOrEmpty(Model.elQRCode))
+                {
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <img src="@Model.elQRCode" />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </form>
+
+</div>
