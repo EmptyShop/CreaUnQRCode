@@ -7,31 +7,41 @@
 
 <div class="text-center">
     <h1 class="display-4">¡Hola!</h1>
-    <p>Hoy es @ViewData["TimeStamp"]</p>
  </div>
     
-<div class="container">
-        
-    <form method="post">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-sm-8">
-                    <label for="Mensaje">Escribe un mensaje</label>
-                    <input asp-for="Mensaje" type="text" class="form-control"/>
-                    <button type="submit" class="btn btn-primary">Generar</button>
-                </div>
-            </div>
-            @{
-                if (!String.IsNullOrEmpty(Model.elQRCode))
-                {
+<div class="container rounded bg-secondary text-white pt-3 pb-3">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div class="form-group">
                     <div class="row">
-                        <div class="col-sm-8">
-                            <img src="@Model.elQRCode" />
+                        <div class="col-md-12">
+                            <label for="Mensaje" class="lead font-weight-bold">Escribe un mensaje</label>
+                            <input asp-for="Mensaje" type="text" class="form-control"/>
                         </div>
                     </div>
-                }
-            }
+                    <div class="row p-3">
+                        <div class="col-md-6 custom-control custom-switch">
+                            <input type="checkbox" asp-for="acolor" class="custom-control-input">
+                            <label for="acolor" class="custom-control-label">A color</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-dark float-left">Generar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-
+        @{
+            if (!String.IsNullOrEmpty(Model.elQRCode))
+            {
+                <div class="col-md-6">
+                    <p class="pl-4 pt-1 ml-3 mb-0 lead font-weight-bold">Tu mensaje en QRCode:</p>
+                    <img src="@Model.elQRCode" />
+                </div>                    
+            }
+        }
+    </div>
 </div>
